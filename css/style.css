@@ -142,3 +142,10 @@ footer {
     left: 0;
     box-sizing: border-box;
 }
+
+/* Section Styles with Separating Lines */
+.section-divider {
+    border-bottom: 1px solid #ddd;
+    margin: 20px 0;
+    padding-bottom: 20px;
+}
