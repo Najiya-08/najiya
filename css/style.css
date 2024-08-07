@@ -23,20 +23,30 @@ body {
 
 .title-bar .container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between; /* Distribute space between left and right */
     max-width: 1200px;
     width: 100%;
+    margin: 0 auto;
+}
+
+.title-left {
+    margin-left: -250px; /* Adjust this value to move the name further left */
 }
 
 .title-left h1 {
     margin: 0;
     font-size: 24px;
+    text-align: left; /* Align text to the left */
+}
+
+.title-right {
+    display: flex;
+    gap: 15px; /* Space between the links */
 }
 
 .title-right a {
     color: white;
-    margin-left: 20px;
     text-decoration: none;
     font-weight: bold;
 }
@@ -45,6 +55,7 @@ body {
     text-decoration: underline;
 }
 
+/* Adjust the main container's top margin to avoid overlap with the title bar */
 .container.main-container {
     display: flex;
     width: 90%;
@@ -123,11 +134,11 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
+    padding: 5px 0;
+    margin-top: 10px;
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
+    box-sizing: border-box;
 }
-
