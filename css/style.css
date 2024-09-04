@@ -7,6 +7,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 16px;
+}
+
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
 }
 
 /* Title Bar Styles */
@@ -23,26 +30,26 @@ body {
 
 .title-bar .container {
     display: flex;
-    align-items: center;
-    justify-content: space-between; /* Distribute space between left and right */
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
+    flex-direction: column;
+    text-align: center;
 }
 
 .title-left {
-    margin-left: -250px; /* Adjust this value to move the name further left */
+    margin: 0;
 }
 
 .title-left h1 {
     margin: 0;
     font-size: 24px;
-    text-align: left; /* Align text to the left */
+    text-align: center;
 }
 
 .title-right {
     display: flex;
-    gap: 15px; /* Space between the links */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .title-right a {
@@ -55,9 +62,22 @@ body {
     text-decoration: underline;
 }
 
-/* Adjust the main container's top margin to avoid overlap with the title bar */
+@media (min-width: 768px) {
+    .title-bar .container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .title-left {
+        margin-left: -250px;
+    }
+}
+
+/* Main Container Styles */
 .container.main-container {
     display: flex;
+    flex-direction: column;
     width: 90%;
     max-width: 1200px;
     margin: 80px auto 20px auto; /* Adjust for title bar height */
@@ -67,11 +87,18 @@ body {
     overflow: hidden;
 }
 
+@media (min-width: 768px) {
+    .container.main-container {
+        flex-direction: row;
+    }
+}
+
+/* Sidebar Styles */
 .sidebar {
     background-color: #333;
     color: white;
     padding: 20px;
-    width: 25%;
+    width: 100%;
     text-align: center;
     box-sizing: border-box;
 }
@@ -80,10 +107,6 @@ body {
     border-radius: 50%;
     max-width: 150px;
     margin-bottom: 20px;
-}
-
-.sidebar .contact-info h2 {
-    margin: 10px 0;
 }
 
 .sidebar .contact-info p, 
@@ -107,10 +130,23 @@ body {
     text-decoration: none;
 }
 
+@media (min-width: 768px) {
+    .sidebar {
+        width: 25%;
+    }
+}
+
+/* Content Styles */
 .content {
     padding: 20px;
-    width: 75%;
+    width: 100%;
     box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .content {
+        width: 75%;
+    }
 }
 
 .content section {
@@ -130,17 +166,22 @@ body {
     padding-left: 20px;
 }
 
+/* Footer Styles */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 5px 0;
+    padding: 10px 0;
     margin-top: 10px;
     width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     box-sizing: border-box;
+    font-size: 14px;
+}
+
+@media (max-width: 767px) {
+    footer {
+        font-size: 12px;
+    }
 }
 
 /* Section Styles with Separating Lines */
@@ -149,6 +190,8 @@ footer {
     margin: 20px 0;
     padding-bottom: 20px;
 }
+
+/* Research Container Styles */
 .research-container {
     display: flex;
     flex-wrap: wrap;
@@ -182,4 +225,16 @@ footer {
     font-size: 14px;
     color: #555;
     line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+    .research-item {
+        width: 100%;
+    }
+}
+
+/* Responsive Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
 }
