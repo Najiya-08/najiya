@@ -1,13 +1,32 @@
+/* CSS Variables for easy customization */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-gray: #f8f9fa;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--light-gray);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 16px;
+    line-height: 1.6;
 }
 
 @media (max-width: 767px) {
@@ -18,59 +37,102 @@ body {
 
 /* Title Bar Styles */
 .title-bar {
-    background-color: #333;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
     color: white;
     width: 100%;
-    padding: 10px 20px;
+    padding: 15px 20px;
     position: fixed;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .title-bar .container {
     display: flex;
     flex-direction: column;
     text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .title-left {
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.title-left .header-logo {
+    height: 50px;
+    width: auto;
+    filter: brightness(0) invert(1);
 }
 
 .title-left h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 26px;
     text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .title-right {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 .title-right a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .title-right a:hover {
-    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.title-right a.active {
+    background-color: rgba(255, 255, 255, 0.25);
+    font-weight: 600;
 }
 
 @media (min-width: 768px) {
     .title-bar .container {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         text-align: left;
     }
 
     .title-left {
-        margin-left: -250px;
+        justify-content: flex-start;
+    }
+
+    .title-left .header-logo {
+        height: 55px;
+    }
+
+    .title-left h1 {
+        text-align: left;
+        font-size: 28px;
+    }
+
+    .title-right {
+        margin-top: 0;
+    }
+
+    .title-right a {
+        font-size: 15px;
     }
 }
 
@@ -80,24 +142,30 @@ body {
     flex-direction: column;
     width: 90%;
     max-width: 1200px;
-    margin: 80px auto 20px auto; /* Adjust for title bar height */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 100px auto 40px auto;
+    box-shadow: var(--shadow);
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.container.main-container:hover {
+    box-shadow: var(--shadow-hover);
 }
 
 @media (min-width: 768px) {
     .container.main-container {
         flex-direction: row;
+        margin: 120px auto 40px auto;
     }
 }
 
 /* Sidebar Styles */
 .sidebar {
-    background-color: #333;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
     color: white;
-    padding: 20px;
+    padding: 40px 20px;
     width: 100%;
     text-align: center;
     box-sizing: border-box;
@@ -105,126 +173,254 @@ body {
 
 .sidebar .profile-pic img {
     border-radius: 50%;
-    max-width: 150px;
-    margin-bottom: 20px;
+    max-width: 180px;
+    margin-bottom: 25px;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
 }
 
-.sidebar .contact-info p, 
+.sidebar .profile-pic img:hover {
+    transform: scale(1.05);
+}
+
+.sidebar .contact-info p {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 12px 0;
+    font-size: 15px;
+}
+
 .sidebar .contact-info a {
-    color: white;
-    margin: 5px 0;
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sidebar .contact-info a:hover {
+    color: #5dade2;
+    text-decoration: underline;
 }
 
 .sidebar .social-links {
     list-style: none;
     padding: 0;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .sidebar .social-links li {
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .sidebar .social-links a {
     color: white;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.sidebar .social-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.sidebar .social-links i {
+    font-size: 18px;
 }
 
 @media (min-width: 768px) {
     .sidebar {
-        width: 25%;
+        width: 28%;
     }
 }
 
 /* Content Styles */
 .content {
-    padding: 20px;
+    padding: 40px 30px;
     width: 100%;
     box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
     .content {
-        width: 75%;
+        width: 72%;
+        padding: 50px 40px;
     }
 }
 
 .content section {
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .content h2 {
-    color: #333;
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--secondary-color);
+    display: inline-block;
+}
+
+.content h3 {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
 .content p {
-    line-height: 1.6;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.content a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.content a:hover {
+    color: #2980b9;
+    text-decoration: underline;
 }
 
 .content ul {
-    list-style: disc;
-    padding-left: 20px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.content ul li {
+    padding: 12px 0 12px 30px;
+    position: relative;
+    line-height: 1.6;
+    color: #555;
+}
+
+.content ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 10px;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.content ul li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.content code {
+    background-color: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
 }
 
 /* Footer Styles */
 footer {
-    background-color: #333;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
     color: white;
     text-align: center;
-    padding: 10px 0;
-    margin-top: 10px;
+    padding: 25px 20px;
+    margin-top: 20px;
     width: 100%;
     box-sizing: border-box;
     font-size: 14px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    opacity: 0.9;
 }
 
 @media (max-width: 767px) {
     footer {
         font-size: 12px;
+        padding: 20px 15px;
     }
 }
 
 /* Section Styles with Separating Lines */
 .section-divider {
-    border-bottom: 1px solid #ddd;
-    margin: 20px 0;
-    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    margin: 30px 0;
+    padding-bottom: 30px;
 }
 
 /* Research Container Styles */
 .research-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
+    margin-top: 25px;
 }
 
 .research-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: calc(50% - 20px); /* Adjust the width as needed */
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 25px;
+    width: calc(50% - 12.5px);
     box-sizing: border-box;
     text-align: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.research-item:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+    border-color: var(--secondary-color);
 }
 
 .research-item img {
     max-width: 100%;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.research-item:hover img {
+    transform: scale(1.05);
 }
 
 .research-item h3 {
-    margin: 10px 0 5px;
-    font-size: 18px;
-    color: #333;
+    margin: 15px 0 10px;
+    font-size: 20px;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .research-item p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.4;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    text-align: left;
 }
 
 @media (max-width: 767px) {
@@ -239,14 +435,179 @@ img {
     height: auto;
 }
 
+/* Teaching Experience Styles */
+.teaching-container {
+    margin-top: 20px;
+}
+
+.teaching-item {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.teaching-item:hover {
+    background-color: #e9ecef;
+    border-left-width: 6px;
+    transform: translateX(5px);
+}
+
 .teaching-details {
     position: relative;
 }
 
+.teaching-details h3 {
+    color: var(--primary-color);
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
 .teaching-year {
-    position: absolute;
-    right: 0;
-    font-weight: bold;
-    color: #555;
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.teaching-details ul {
+    margin-top: 10px;
+}
+
+.teaching-details ul li {
+    padding: 8px 0 8px 25px;
+}
+
+.inline-details {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Publications Section Styles */
+/* When publications are NOT in service-container (old single-page style) */
+#publications ul:not(.service-container ul) li {
+    background-color: #f8f9fa;
+    padding: 15px 20px 15px 35px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+#publications ul:not(.service-container ul) li:hover {
+    background-color: #e9ecef;
+    border-left-width: 6px;
+    transform: translateX(5px);
+}
+
+#publications ul:not(.service-container ul) li::before {
+    content: "📄";
+    left: 12px;
+}
+
+/* When publications are in service-container, they inherit service-container styles */
+#publications .service-container h3 {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* Academic Service Section Styles */
+.service-container {
+    margin-top: 20px;
+}
+
+.service-container h3 {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.service-container ul li {
+    background-color: #f8f9fa;
+    padding: 12px 20px 12px 35px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.service-container ul li:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.service-container ul li::before {
+    content: "✓";
+    color: #27ae60;
+}
+
+/* Highlights Section Styles */
+/* When highlights are NOT in service-container (old single-page style) */
+#highlights ul:not(.service-container ul) li {
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    padding: 12px 15px 12px 30px;
+}
+
+#highlights ul:not(.service-container ul) li:hover {
+    background-color: #f8f9fa;
+}
+
+/* When highlights are in service-container, they inherit service-container styles */
+#highlights .service-container h3 {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* Contact Details Styles */
+#contact-details p {
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+/* Scroll to Top Button (Optional Enhancement) */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--secondary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background-color: #2980b9;
+    transform: translateY(-5px);
 }
 
