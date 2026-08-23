@@ -12,7 +12,6 @@ This website showcases my research work, publications, academic achievements, an
 - Remote vehicle operation
 - Autonomous driving systems
 - Wireless communication and networking
-- IoT for autonomous vehicles
 
 ## 🗂️ Website Sections
 
